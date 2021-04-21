@@ -1,3 +1,5 @@
+package ie.tudublin;
+
 public class Note {
     private int duaration;
     private char note;
@@ -18,6 +20,14 @@ public class Note {
     }
     public void setNote(char note) {
         this.note = note;
+    }
+
+    public String toStringQ() {
+        return note + "\t" + duaration + "\t" + "Quaver";
+    }
+
+    public String toStringC() {
+        return note + "\t" + duaration + "\t" + "Crotchet";
     }
     
     

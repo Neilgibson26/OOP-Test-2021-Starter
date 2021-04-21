@@ -7,11 +7,10 @@ import processing.core.PApplet;
 
 public class ScoreDisplay extends PApplet
 {
-	//String score = "DEFGABcd";
-	//String score = "D2E2F2G2A2B2c2d2";
+	// String score = "DEFGABcd";
+	// String score = "D2E2F2G2A2B2c2d2";
 	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 	ArrayList<Note> notes = new ArrayList<Note>();
-	ArrayList<Float> noteY = new ArrayList<Float>();
 
 	//	Hashmap to store notes and their y values as a key and value to access later.
 	HashMap<Character, Float> yVal = new HashMap<Character, Float>();
@@ -57,7 +56,7 @@ public class ScoreDisplay extends PApplet
 			currentDuration = 1;
 			if(Character.isDigit(nextNote))
 			{
-				currentDuration = 2;
+				currentDuration = nextNote - '0';
 				i+=1;
 			}
 			Note n = new Note(currentDuration, currNote);

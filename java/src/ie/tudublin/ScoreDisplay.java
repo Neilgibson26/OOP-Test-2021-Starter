@@ -7,14 +7,6 @@ import processing.core.PApplet;
 
 public class ScoreDisplay extends PApplet
 {
-	float D = 8;
-	float E = 7;
-	float F = 6;
-	float G = 5;
-	float A = 4;
-	float B = 3;
-	float c = 2;
-	float d = 1;
 	//String score = "DEFGABcd";
 	//String score = "D2E2F2G2A2B2c2d2";
 	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
@@ -52,12 +44,15 @@ public class ScoreDisplay extends PApplet
 	void loadScore ()
 	{
 		int currentDuration;
-		char currNote;
-		char nextNote;
-		for(int i = 0; i<score.length()-1; i++)
+		char currNote = score.charAt(0);
+		char nextNote = score.charAt(1);
+		for(int i = 0; i<score.length(); i++)
 		{
 			currNote = score.charAt(i);
-			nextNote = score.charAt(i+1);
+			if(i < score.length()-2)
+			{
+				nextNote = score.charAt(i+1);
+			}
 			currentDuration = 1;
 			if(Character.isDigit(nextNote))
 			{
@@ -89,6 +84,7 @@ public class ScoreDisplay extends PApplet
 		for(int i = 0; i<5; i++)
 		{
 			y = map(i, 0, 4, tborder, height - tborder);
+			stroke(0);
 			line(border, y, width-border, y);
 
 		}
@@ -99,83 +95,199 @@ public class ScoreDisplay extends PApplet
 	public void drawNotes()
 	{
 		float x, letters;
-		float y2;
+		float y;
 
 		letters = tborder / 2;
 
 		//	Looping through the notes array list to draw it onto the board
 		for(int i = 0; i<notes.size(); i++)
 		{
-			//	Mapping to get the x co-ordinate for each note.
+			//	Mapping to get the x co-ordinate for each note and letter.
 			x = map(i, 0, notes.size(), border, width-border);
-			text(notes.get(i).getNote(), x, letters);
+
+			// Draw bases on note, 8 if statements
 
 
-
-			if(notes.get(i).getNote() == 'A') //Checking what note it is, then load y co-ord form array list
-			{
-				//y = map(A,1,8,)
-				y2 = noteY.get(2);
-
-				fill(0);
-				circle(x+10, y2 + 11, 20);
-				line(x + 17, y2 + 11, x + 17, y2 - 50);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y2-50, x+25, y2-40);
-				}
-			}
-			if(notes.get(i).getNote() == 'B') //Checking what note it is, then load y co-ord form array list
-			{
-				y2 = noteY.get(2);
-
-				fill(0);
-				circle(x+10, y2, 20);
-				line(x + 17, y2, x + 17, y2 - 60);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y2-50, x+25, y2-40);
-				}
-			}
 			if(notes.get(i).getNote() == 'D') //Checking what note it is, then load y co-ord form array list
 			{	
-				y2 = noteY.get(0);
+				y = noteY.get(0);
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
 
-				fill(0);
-				circle(x+10, y2 + 11, 20);
-				line(x + 17, y2 + 11, x + 17, y2 - 50);
+				circle(x+10, y + 11, 20);
+				line(x + 17, y + 11, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
 				//	Check if Quaver or Crotchet
 				if(notes.get(i).getDuaration()<2)
 				{
-					line(x+17, y2-50, x+25, y2-40);
+					line(x+17, y-60, x+25, y-40);
 				}
 			}
 			if(notes.get(i).getNote() == 'E') //Checking what note it is, then load y co-ord form array list
 			{
-				y2 = noteY.get(0);
+				y = noteY.get(0);
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
 
-				fill(0);
-				circle(x+10, y2, 20);
-				line(x + 17, y2, x + 17, y2 - 50);
+				circle(x+10, y, 20);
+				line(x + 17, y, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
 				//	Check if Quaver or Crotchet
 				if(notes.get(i).getDuaration()<2)
 				{
-					line(x+17, y2-50, x+25, y2-40);
+					line(x+17, y-60, x+25, y-40);
 				}
 			}
 			if(notes.get(i).getNote() == 'F') //Checking what note it is, then load y co-ord form array list
 			{
-				y2 = noteY.get(1);
+				y = noteY.get(1);
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
 
-				fill(0);
-				circle(x+10, y2 + 11, 20);
-				line(x + 17, y2 + 11, x + 17, y2 - 50);
+				circle(x+10, y + 11, 20);
+				line(x + 17, y + 11, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
 				//	Check if Quaver or Crotchet
 				if(notes.get(i).getDuaration()<2)
 				{
-					line(x+17, y2-50, x+25, y2-40);
+					line(x+17, y-60, x+25, y-40);
+				}
+			}
+			if(notes.get(i).getNote() == 'G') //Checking what note it is, then load y co-ord form array list
+			{
+				y = noteY.get(1);
+
+				//	check if mouse is in range to fill note
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
+				circle(x+10, y, 20);
+				line(x + 17, y, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
+
+				//	Check if Quaver or Crotchet
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-60, x+25, y-40);
+				}
+			}
+
+			if(notes.get(i).getNote() == 'A') //Checking what note it is, then load y co-ord form array list
+			{
+				//y = map(A,1,8,)
+				y = noteY.get(2);
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
+				circle(x+10, y + 11, 20);
+				line(x + 17, y + 11, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
+				//	Check if Quaver or Crotchet
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-60, x+25, y-40);
+				}
+			}
+
+			if(notes.get(i).getNote() == 'B') //Checking what note it is, then load y co-ord form array list
+			{
+				y = noteY.get(2);
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
+
+				circle(x+10, y, 20);
+				line(x + 17, y, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
+				//	Check if Quaver or Crotchet
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-60, x+25, y-40);
+				}
+			}
+
+			if(notes.get(i).getNote() == 'c') //Checking what note it is, then load y co-ord form array list
+			{
+				y = noteY.get(2);
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
+				circle(x+10, y - 11, 20);
+				line(x + 17, y - 11, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
+
+				//	Check if Quaver or Crotchet
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-60, x+25, y-40);
+				}
+			}
+
+			if(notes.get(i).getNote() == 'd') //Checking what note it is, then load y co-ord form array list
+			{
+				y = noteY.get(3);
+				if(mouseX>x && mouseX<(x+20))
+				{	
+					fill(255,0,0);
+					stroke(255,0,0);
+				}
+				else { 
+					fill(0);
+					stroke(0);
+				}
+
+				circle(x+10, y - 11, 20);
+				line(x + 17, y - 11, x + 17, y - 60);
+				text(notes.get(i).getNote(), x+10, letters);
+				//	Check if Quaver or Crotchet
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-60, x+25, y-40);
 				}
 			}
 		}

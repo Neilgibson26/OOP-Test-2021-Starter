@@ -10,6 +10,7 @@ public class ScoreDisplay extends PApplet
 	String score = "DEFGABcd";
 	//String score = "D2E2F2G2A2B2c2d2";
 	//String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
+	ArrayList<Note> notes = new ArrayList<Note>();
 	
 	public void settings()
 	{
@@ -23,13 +24,29 @@ public class ScoreDisplay extends PApplet
 
 	public void setup() 
 	{
-		
+		loadScore();
 	}
 
 	public void draw()
 	{
 		background(255);
 		
+	}
+
+	void loadScore ()
+	{
+		int currentDuration = 1;
+		for(int i = 0; i<score.length()-1; i++)
+		{
+			if(score.charAt(i+1) == 2)
+			{
+				currentDuration = 2;
+			}
+			else{
+				currentDuration = 1;
+			}
+		}
+
 	}
 
 	void drawNotes()

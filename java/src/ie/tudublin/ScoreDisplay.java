@@ -1,7 +1,7 @@
 package ie.tudublin;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 import processing.core.PApplet;
 
@@ -12,6 +12,9 @@ public class ScoreDisplay extends PApplet
 	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 	ArrayList<Note> notes = new ArrayList<Note>();
 	ArrayList<Float> noteY = new ArrayList<Float>();
+
+	//	Hashmap to store notes and their y values as a key and value to access later.
+	HashMap<Character, Float> yVal = new HashMap<Character, Float>();
 	float border = 100;
 	float tborder = 300;
 	
@@ -20,9 +23,6 @@ public class ScoreDisplay extends PApplet
 	{
 		size(1000, 500);
 
-		// How to convert a character to a number
-		char c = '7'; // c holds the character 7 (55)
-		int i = c - '0'; // i holds the number 7 (55 - 48) 
 	}
 
 	public void setup() 
@@ -49,6 +49,7 @@ public class ScoreDisplay extends PApplet
 		for(int i = 0; i<score.length(); i++)
 		{
 			currNote = score.charAt(i);
+			//	Bounds checking here
 			if(i < score.length()-2)
 			{
 				nextNote = score.charAt(i+1);
@@ -104,203 +105,37 @@ public class ScoreDisplay extends PApplet
 		{
 			//	Mapping to get the x co-ordinate for each note and letter.
 			x = map(i, 0, notes.size(), border, width-border);
-
-			// Draw bases on note, 8 if statements
-
-
-			if(notes.get(i).getNote() == 'D') //Checking what note it is, then load y co-ord form array list
+			y = yVal.get(notes.get(i).getNote()); //  get the y co-ordinate by using the note as a key.
+			if(mouseX>x && mouseX<(x+20)) //  Check if the mouse is in the radius of a note, if so turn red.
 			{	
-				y = noteY.get(0);
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-
-				circle(x+10, y + 11, 20);
-				line(x + 17, y + 11, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y-60, x+25, y-40);
-				}
+				fill(255,0,0);
+				stroke(255,0,0);
 			}
-			if(notes.get(i).getNote() == 'E') //Checking what note it is, then load y co-ord form array list
-			{
-				y = noteY.get(0);
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-
-				circle(x+10, y, 20);
-				line(x + 17, y, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y-60, x+25, y-40);
-				}
+			else { 
+				fill(0);
+				stroke(0);
 			}
-			if(notes.get(i).getNote() == 'F') //Checking what note it is, then load y co-ord form array list
-			{
-				y = noteY.get(1);
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-
-				circle(x+10, y + 11, 20);
-				line(x + 17, y + 11, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
+			circle(x+10, y + 11, 20);
+			line(x + 17, y + 11, x + 17, y - 50);
+			text(notes.get(i).getNote(), x+10, letters);
+			if(notes.get(i).getDuaration()<2)
 				{
-					line(x+17, y-60, x+25, y-40);
+					line(x+17, y-50, x+25, y-30);
 				}
-			}
-			if(notes.get(i).getNote() == 'G') //Checking what note it is, then load y co-ord form array list
-			{
-				y = noteY.get(1);
-
-				//	check if mouse is in range to fill note
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-				circle(x+10, y, 20);
-				line(x + 17, y, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y-60, x+25, y-40);
-				}
-			}
-
-			if(notes.get(i).getNote() == 'A') //Checking what note it is, then load y co-ord form array list
-			{
-				//y = map(A,1,8,)
-				y = noteY.get(2);
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-				circle(x+10, y + 11, 20);
-				line(x + 17, y + 11, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y-60, x+25, y-40);
-				}
-			}
-
-			if(notes.get(i).getNote() == 'B') //Checking what note it is, then load y co-ord form array list
-			{
-				y = noteY.get(2);
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-
-				circle(x+10, y, 20);
-				line(x + 17, y, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y-60, x+25, y-40);
-				}
-			}
-
-			if(notes.get(i).getNote() == 'c') //Checking what note it is, then load y co-ord form array list
-			{
-				y = noteY.get(2);
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-				circle(x+10, y - 11, 20);
-				line(x + 17, y - 11, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y-60, x+25, y-40);
-				}
-			}
-
-			if(notes.get(i).getNote() == 'd') //Checking what note it is, then load y co-ord form array list
-			{
-				y = noteY.get(3);
-				if(mouseX>x && mouseX<(x+20))
-				{	
-					fill(255,0,0);
-					stroke(255,0,0);
-				}
-				else { 
-					fill(0);
-					stroke(0);
-				}
-
-				circle(x+10, y - 11, 20);
-				line(x + 17, y - 11, x + 17, y - 60);
-				text(notes.get(i).getNote(), x+10, letters);
-				//	Check if Quaver or Crotchet
-				if(notes.get(i).getDuaration()<2)
-				{
-					line(x+17, y-60, x+25, y-40);
-				}
-			}
+			
 		}
 	}
 
 	//Getting the y co-ordinates of each line to be able to locate where each note will be drawn
 	public void getNoteY()
 	{
-		float y,x;
-		for(int i = 0; i<5; i++)
+		float y;
+
+		//	Iterate through array list to add key and value
+		for(int i = notes.size()-1; i>=0; i--)
 		{
-			y = map(i, 0, 4, tborder, height - tborder);
-			noteY.add(y);
+			y = map(i, 0, 10, tborder, height-tborder);
+			yVal.put(notes.get(i).getNote(), y);
 		}
 	}
 

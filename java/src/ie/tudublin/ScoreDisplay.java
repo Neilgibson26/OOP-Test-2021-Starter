@@ -88,33 +88,71 @@ public class ScoreDisplay extends PApplet
 	public void drawNotes()
 	{
 		float x;
+		float y;
 		for(int i = 0; i<notes.size(); i++)
 		{
 			x = map(i, 0, notes.size(), border, width-border);
 			if(notes.get(i).getNote() == 'A')
 			{
+				y = noteY.get(2);
+
 				fill(0);
-				circle(x+10, noteY.get(2) + 11, 20);
+				circle(x+10, y + 11, 20);
+				line(x + 17, y + 11, x + 17, y - 50);
+
+				//
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-50, x+25, y-40);
+				}
 			}
 			if(notes.get(i).getNote() == 'B')
 			{
+				y = noteY.get(2);
+
 				fill(0);
-				circle(x+10, noteY.get(2), 20);
+				circle(x+10, y, 20);
+				line(x + 17, y, x + 17, y - 60);
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-50, x+25, y-40);
+				}
 			}
 			if(notes.get(i).getNote() == 'D')
 			{	
+				y = noteY.get(0);
+
 				fill(0);
-				circle(x+10, noteY.get(0) + 11, 20);
+				circle(x+10, y + 11, 20);
+				line(x + 17, y + 11, x + 17, y - 50);
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-50, x+25, y-40);
+				}
 			}
 			if(notes.get(i).getNote() == 'E')
 			{
+				y = noteY.get(0);
+
 				fill(0);
-				circle(x+10, noteY.get(0), 20);
+				circle(x+10, y, 20);
+				line(x + 17, y, x + 17, y - 50);
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-50, x+25, y-40);
+				}
 			}
 			if(notes.get(i).getNote() == 'F')
 			{
+				y = noteY.get(1);
+
 				fill(0);
-				circle(x+10, noteY.get(1) + 11, 20);
+				circle(x+10, y + 11, 20);
+				line(x + 17, y + 11, x + 17, y - 50);
+				if(notes.get(i).getDuaration()<2)
+				{
+					line(x+17, y-50, x+25, y-40);
+				}
 			}
 		}
 	}

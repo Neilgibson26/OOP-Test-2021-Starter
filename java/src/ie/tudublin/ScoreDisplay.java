@@ -35,16 +35,23 @@ public class ScoreDisplay extends PApplet
 
 	void loadScore ()
 	{
-		int currentDuration = 1;
+		int currentDuration;
+		char currNote;
+		char nextNote;
 		for(int i = 0; i<score.length()-1; i++)
 		{
-			if(score.charAt(i+1) == 2)
+			currNote = score.charAt(i);
+			nextNote = score.charAt(i+1);
+			currentDuration = 1;
+			if(Character.isDigit(nextNote))
 			{
 				currentDuration = 2;
+				i+=1;
 			}
-			else{
-				currentDuration = 1;
-			}
+			Note n = new Note(currentDuration, currNote);
+			notes.add(n);
+			System.out.println(notes.get(i));
+
 		}
 
 	}

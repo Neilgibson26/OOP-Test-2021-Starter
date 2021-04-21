@@ -93,7 +93,28 @@ public class ScoreDisplay extends PApplet
 			x = map(i, 0, notes.size(), border, width-border);
 			if(notes.get(i).getNote() == 'A')
 			{
-				circle(x, noteY.get(2), 30);
+				fill(0);
+				circle(x+10, noteY.get(2) + 11, 20);
+			}
+			if(notes.get(i).getNote() == 'B')
+			{
+				fill(0);
+				circle(x+10, noteY.get(2), 20);
+			}
+			if(notes.get(i).getNote() == 'D')
+			{	
+				fill(0);
+				circle(x+10, noteY.get(0) + 11, 20);
+			}
+			if(notes.get(i).getNote() == 'E')
+			{
+				fill(0);
+				circle(x+10, noteY.get(0), 20);
+			}
+			if(notes.get(i).getNote() == 'F')
+			{
+				fill(0);
+				circle(x+10, noteY.get(1) + 11, 20);
 			}
 		}
 	}
